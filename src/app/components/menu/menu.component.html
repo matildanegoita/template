@@ -1,0 +1,23 @@
+<nav 
+  class="custom-menu"
+  [class.sticky-menu]="menuConfig()?.sticky"
+  [class.transparent-menu]="menuConfig()?.transparent"
+>
+  <ul class="menu-items">
+    <li 
+      *ngFor="let item of menuConfig()?.items" 
+      [class.disabled]="!item.enabled"
+      (click)="onMenuItemClick(item.name)"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+  <button 
+    *ngIf="menuConfig()?.sidebar?.enabled" 
+    (click)="toggleSidebar()" 
+    class="toggle-button"
+  >
+    <span *ngIf="sidebarExpanded()">expand_more</span>
+    <span *ngIf="!sidebarExpanded()">chevron_left</span>
+  </button>
+</nav>
