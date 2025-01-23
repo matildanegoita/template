@@ -1,58 +1,59 @@
-:host {
-  --menu-bg-color: #333;
-  --menu-text-color: #fff;
-  --menu-padding: 15px;
-  --menu-item-spacing: 20px;
-  --menu-item-hover-color: #00bcd4;
-  --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
 .custom-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--menu-bg-color);
-  color: var(--menu-text-color);
-  padding: var(--menu-padding);
-  box-shadow: var(--menu-shadow);
+  padding: 15px;
+  background-color: #333; /* Fundal implicit */
+  color: white;
   width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sticky-menu {
+  position: sticky;
+  top: 0;
+}
+
+.transparent-menu {
+  background-color: transparent;
+  color: black;
 }
 
 .menu-items {
   display: flex;
+  gap: 15px;
   list-style: none;
-  margin: 0;
   padding: 0;
-  gap: var(--menu-item-spacing);
+  margin: 0;
 }
 
 .menu-items li {
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.menu-items li:hover {
-  color: var(--menu-item-hover-color);
-  transform: scale(1.1);
+.menu-items li a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.menu-items .disabled {
-  opacity: 0.5;
+.menu-items li a:hover {
+  text-decoration: underline;
+}
+
+.disabled {
   pointer-events: none;
-  cursor: default;
+  opacity: 0.5;
 }
 
 .toggle-button {
   background-color: transparent;
-  color: var(--menu-text-color);
+  color: white;
   border: none;
-  padding: 10px 15px;
   cursor: pointer;
-  font-size: 14px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
 }
 
-.toggle-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.transparent-menu .toggle-button {
+  color: black; /* Asigură-te că butonul se vede pe fundal transparent */
 }

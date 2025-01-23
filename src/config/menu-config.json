@@ -2,8 +2,8 @@
     "menuItems": [
       { "label": "Home", "route": "/home", "enabled": true},
       { "label": "About", "route": "/about", "enabled": true},
-      { "label": "Services", "route": "/services", "enabled": true},
-      { "label": "Contact", "route": "/contact", "enabled": true}
+      { "label": "Services", "route": "/services", "enabled": false},
+      { "label": "Contact", "route": "/contact", "enabled": false}
     ],
     "sticky": true,
     "transparent": false,

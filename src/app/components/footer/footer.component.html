@@ -1,0 +1,3 @@
+<footer *ngIf="footerConfig()?.enabled" [class.sticky-footer]="footerConfig()?.sticky" class="custom-footer">
+  {{ footerConfig()?.text }}
+</footer>
