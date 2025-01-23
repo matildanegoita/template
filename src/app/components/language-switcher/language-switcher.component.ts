@@ -1,38 +1,44 @@
 import { Component, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf, NgFor],
   templateUrl: './language-switcher.component.html',
-  styleUrls: ['./language-switcher.component.css'],
+  styleUrls: ['./language-switcher.component.css']
 })
 export class LanguageSwitcherComponent {
-  private _languageConfig = signal<any | null>(null); // Configurația limbilor
+  private _languageConfig = signal<any | null>(null); // Configurația pentru language switcher
+
   selectedLanguage = signal<string>('ro'); // Limba selectată implicit
 
-  // Computed pentru limbile activate
-  activeLanguages = computed(() =>
-    this._languageConfig()?.languages.filter((lang: any) => lang.enabled) || []
+  // Computed pentru acces ușor la configurație
+  languageSwitcherConfig = computed(() => this._languageConfig());
+
+  enabledLanguages = computed(() =>
+    this.languageSwitcherConfig()?.languages.filter((language: any) => language.enabled) || []
   );
+  // Computed pentru verificare dacă language switcher este activ
+  isEnabled = computed(() => this._languageConfig()?.enabled === true);
 
   constructor(private http: HttpClient) {
-    this.loadLanguageConfig();
+    this.loadLanguageSwitcherConfig();
   }
 
-  // Metoda pentru încărcarea configurării limbilor
-  loadLanguageConfig() {
+  loadLanguageSwitcherConfig() {
     this.http.get('/config/language-switcher-config.json').subscribe({
-      next: (config: any) => this._languageConfig.set(config.languageSwitcher),
-      error: (err) => console.error('Failed to load language config:', err),
+      next: (config: any) => {
+        console.log('Loaded Language Switcher Config:', config); // Debug
+        this._languageConfig.set(config.languageSwitcher);
+      },
+      error: (err) => console.error('Failed to load language switcher config:', err)
     });
   }
 
-  // Metodă pentru schimbarea limbii
   changeLanguage(language: string) {
-    if (language !== this.selectedLanguage()) {
+    if (language !== this.selectedLanguage() && this.isEnabled()) {
       this.selectedLanguage.set(language);
       console.log(`Language switched to: ${language}`);
     }

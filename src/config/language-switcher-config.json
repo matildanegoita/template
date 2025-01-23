@@ -1,11 +1,11 @@
 {
   "languageSwitcher": {
-    "enabled": false,
+    "enabled": true,
     "languages": [
       { "label": "ro", "enabled": true },
       { "label": "en", "enabled": true },
-      { "label": "es", "enabled": true },
-      { "label": "de", "enabled": false },
+      { "label": "es", "enabled": false },
+      { "label": "de", "enabled": true },
       { "label": "it", "enabled": true }
     ]
   }
