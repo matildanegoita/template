@@ -2,6 +2,7 @@ import { Component, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
 export class MenuComponent {
   private _menuConfig = signal<any | null>(null); // Signal pentru configurația meniului
   sidebarExpanded = signal(false); // Signal pentru starea sidebar-ului
-
+  selectedLanguage = signal<string>('ro'); // Limba selectată
   // Computed pentru acces ușor la config
   menuConfig = computed(() => this._menuConfig());
 

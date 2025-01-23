@@ -23,4 +23,13 @@ export class AppConfigService {
       })
     );
   }
+  getLanguageSwitcherConfig(): Observable<any> {
+    return this.http.get('/config/language-switcher-config.json').pipe(
+      catchError((err) => {
+        console.error('Error loading language switcher config', err);
+        return of({ enabled: false });
+      })
+    );
+  }
+  
 }

@@ -1,7 +1,9 @@
 <nav 
+*ngIf="menuConfig()?.enabled" 
   class="custom-menu"
   [class.sticky-menu]="menuConfig()?.sticky"
   [class.transparent-menu]="menuConfig()?.transparent"
+
 >
   <ul class="menu-items">
     <li 

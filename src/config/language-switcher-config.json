@@ -1,0 +1,12 @@
+{
+  "languageSwitcher": {
+    "enabled": false,
+    "languages": [
+      { "label": "ro", "enabled": true },
+      { "label": "en", "enabled": true },
+      { "label": "es", "enabled": true },
+      { "label": "de", "enabled": false },
+      { "label": "it", "enabled": true }
+    ]
+  }
+}

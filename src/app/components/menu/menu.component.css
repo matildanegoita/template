@@ -57,3 +57,16 @@
 .transparent-menu .toggle-button {
   color: black; /* Asigură-te că butonul se vede pe fundal transparent */
 }
+.language-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+}
+
