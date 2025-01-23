@@ -1,0 +1,19 @@
+{
+    "home": [
+      { "label": "Overview", "route": "/home/overview" },
+      { "label": "Updates", "route": "/home/updates" }
+    ],
+    "services": [
+      { "label": "Web Development", "route": "/services/web" },
+      { "label": "App Development", "route": "/services/app" }
+    ],
+    "contact": [
+      { "label": "Customer Support", "route": "/contact/support" },
+      { "label": "Feedback", "route": "/contact/feedback" }
+    ],
+    "about": [
+      { "label": "Our Team", "route": "/about/team" },
+      { "label": "History", "route": "/about/history" }
+    ]
+  }
+  
