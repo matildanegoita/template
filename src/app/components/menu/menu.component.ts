@@ -1,11 +1,12 @@
 import { Component, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
@@ -21,7 +22,7 @@ export class MenuComponent {
   }
 
   loadMenuConfig() {
-    this.http.get('/assets/menu-config.json').subscribe({
+    this.http.get('/config/menu-config.json').subscribe({
       next: (config: any) => this._menuConfig.set(config),
       error: (err) => console.error('Failed to load menu config:', err)
     });

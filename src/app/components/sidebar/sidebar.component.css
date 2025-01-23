@@ -1,0 +1,52 @@
+.sidebar-container {
+  position: fixed;
+  top: 50px; /* Mutăm Sidebar-ul sub meniul sticky */
+  right: 0;
+  width: 250px;
+  height: calc(100% - 50px); /* Ajustăm înălțimea pentru a nu se suprapune cu meniul */
+  background-color: #f4f4f4;
+  padding: 15px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000; /* Sidebar-ul este sub buton */
+}
+
+.sidebar-container.active {
+  transform: translateX(0);
+}
+
+
+.sidebar-section {
+  margin-bottom: 20px;
+}
+
+.sidebar-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.sidebar-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-section li {
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.sidebar-section li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar-section li a:hover {
+  color: #00bcd4;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

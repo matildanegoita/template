@@ -5,11 +5,16 @@
 >
   <ul class="menu-items">
     <li 
-      *ngFor="let item of menuConfig()?.items" 
+      *ngFor="let item of menuConfig()?.menuItems" 
       [class.disabled]="!item.enabled"
-      (click)="onMenuItemClick(item.name)"
     >
-      {{ item.name }}
+      <a 
+        [routerLink]="item.route" 
+        *ngIf="item.enabled"
+        (click)="onMenuItemClick(item.label)"
+      >
+        {{ item.label }}
+      </a>
     </li>
   </ul>
   <button 

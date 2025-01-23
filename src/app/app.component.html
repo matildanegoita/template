@@ -1,2 +1,9 @@
 <app-menu></app-menu>
-<router-outlet></router-outlet>
+<div class="layout">
+  <button class="toggle-sidebar" (click)="sidebar.toggleSidebar()">☰ Toggle Sidebar</button>
+  <app-sidebar #sidebar></app-sidebar>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

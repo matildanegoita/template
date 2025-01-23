@@ -1,19 +1,32 @@
 {
-    "home": [
-      { "label": "Overview", "route": "/home/overview" },
-      { "label": "Updates", "route": "/home/updates" }
-    ],
-    "services": [
-      { "label": "Web Development", "route": "/services/web" },
-      { "label": "App Development", "route": "/services/app" }
-    ],
-    "contact": [
-      { "label": "Customer Support", "route": "/contact/support" },
-      { "label": "Feedback", "route": "/contact/feedback" }
-    ],
-    "about": [
-      { "label": "Our Team", "route": "/about/team" },
-      { "label": "History", "route": "/about/history" }
-    ]
-  }
-  
+  "sections": [
+    {
+      "title": "Home",
+      "items": [
+        { "label": "Overview", "route": "/home/overview", "enabled": true },
+        { "label": "Updates", "route": "/home/updates", "enabled": true }
+      ]
+    },
+    {
+      "title": "Services",
+      "items": [
+        { "label": "Web Development", "route": "/services/web", "enabled": true },
+        { "label": "App Development", "route": "/services/app", "enabled": true }
+      ]
+    },
+    {
+      "title": "Contact",
+      "items": [
+        { "label": "Customer Support", "route": "/contact/support", "enabled": true },
+        { "label": "Feedback", "route": "/contact/feedback", "enabled": true }
+      ]
+    },
+    {
+      "title": "About",
+      "items": [
+        { "label": "Our Team", "route": "/about/team", "enabled": true },
+        { "label": "History", "route": "/about/history", "enabled": true }
+      ]
+    }
+  ]
+}
