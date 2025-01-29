@@ -45,5 +45,4 @@ export class SidebarComponent {
     this.sidebarVisible.set(!this.sidebarVisible());
     console.log('New state:', this.sidebarVisible());
   }
-  
 }

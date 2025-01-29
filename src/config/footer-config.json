@@ -1,6 +1,6 @@
 {
     "enabled": true,
-    "sticky": true,
+    "sticky":false,
     "text": "© 2025 All rights reserved"
   }
   

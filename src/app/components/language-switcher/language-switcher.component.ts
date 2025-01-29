@@ -12,7 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
 export class LanguageSwitcherComponent {
   private _languageConfig = signal<any | null>(null); // Configurația pentru language switcher
 
-  selectedLanguage = signal<string>('ro'); // Limba selectată implicit
+  selectedLanguage = signal<string>('en'); // Limba selectată implicit
 
   // Computed pentru acces ușor la configurație
   languageSwitcherConfig = computed(() => this._languageConfig());
