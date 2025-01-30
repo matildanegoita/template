@@ -1,0 +1,44 @@
+{
+    "menu":{
+        "home": "Acasă",
+        "about": "Despre Noi",
+        "services": "Servicii",
+        "contact": "Contact"
+    },
+
+    "footer":{
+        "text": "© 2025 Toate drepturile rezervate"
+    },
+    
+    "sidebar": {
+        "overview": "Prezentare generală",
+        "updates": "Actualizări",
+        "webdevelopment": "Dezvoltare Web",
+        "appdevelopment": "Dezvoltare de Aplicații", 
+        "customersupport": "Suport clienți",
+        "feedback": "Păreri", 
+        "ourteam": "Echipa noastră",
+        "history": "Istorie",
+        "toggle": "Afișează/Ascunde Sidebar"
+    },
+
+    "language-switcher": {
+        "label": "Selectează limba",
+        "languages": {
+      "ro": "Română",
+      "en": "Engleză",
+      "de": "Germană",
+      "es": "Spaniolă",
+      "it": "Italiană"
+    }
+    },
+
+    "others":{
+        "toggle": "Afisare Sidebar",
+        "language": "Limba",
+        "home" : "Acasă",
+        "about" : "Despre Noi",
+        "services" : "Servicii",
+        "contact": "Contact"
+}
+}
