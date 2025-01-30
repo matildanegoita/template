@@ -16,7 +16,7 @@ export class SidebarComponent {
   private _sidebarConfig = signal<any | null>(null); // Configurație din JSON
   private _currentPage = signal<string>(''); // Pagină curentă
   sidebarVisible = signal(false); // Control pentru afișare Sidebar
-
+  sidebarEnabled = computed(() => this._sidebarConfig()?.enabled ?? false); //Sidebar ON/OFF
   // Computed pentru secțiunea curentă
   currentSection = computed(() => {
     const config = this._sidebarConfig();

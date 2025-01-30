@@ -1,4 +1,7 @@
-<nav *ngIf="menuConfig()?.enabled" class="custom-menu">
+<nav *ngIf="menuConfig()?.enabled" 
+     [class.sticky-menu]="isSticky()" 
+     [class.transparent-menu]="isTransparent()" 
+     class="custom-menu">
   <ul class="menu-items">
     <li *ngFor="let item of menuConfig()?.menuItems">
       <a *ngIf="item.enabled" [routerLink]="item.route">

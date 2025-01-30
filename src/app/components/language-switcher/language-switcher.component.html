@@ -1,7 +1,8 @@
-<div class="language-switcher-container">
-  <select (change)="changeLanguage($event)">
-    <option *ngFor="let lang of languages" [value]="lang" [selected]="lang === selectedLanguage">
-      {{ lang.toUpperCase() }}
+<div class="language-switcher-container" *ngIf="isEnabled()">
+  <label for="language-select">{{ languageService.translate('language-switcher.label') }}</label>
+  <select id="language-select" (change)="changeLanguage($event)">
+    <option *ngFor="let lang of languages()" [value]="lang.label" [selected]="lang.label === selectedLanguage()">
+      {{ lang.label.toUpperCase() }}
     </option>
   </select>
 </div>

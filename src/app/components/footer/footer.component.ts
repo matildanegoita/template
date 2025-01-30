@@ -16,6 +16,7 @@ export class FooterComponent {
   private _footerConfig = signal<any | null>(null);
 
   footerConfig = computed(() => this._footerConfig());
+  isSticky = computed(() => this._footerConfig()?.sticky); // Default false dacă nu există
 
   constructor() {
     this.loadFooterConfig();
@@ -23,7 +24,10 @@ export class FooterComponent {
 
   loadFooterConfig() {
     this.http.get('/config/footer-config.json').subscribe({
-      next: (config: any) => this._footerConfig.set(config),
+      next: (config: any) => {
+        console.log("Loaded footer config:", config); // DEBUG
+        this._footerConfig.set(config);
+      },
       error: (err) => console.error('Failed to load footer config:', err)
     });
   }
