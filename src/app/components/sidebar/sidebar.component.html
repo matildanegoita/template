@@ -1,3 +1,7 @@
+<button *ngIf="sidebarEnabled()" (click)="toggleSidebar()" class="toggle-button">
+  ☰ Toggle Sidebar
+</button>
+
 <div *ngIf="sidebarEnabled()" class="sidebar-container" [class.active]="sidebarVisible()">
   <div *ngIf="currentSection()" class="sidebar-section">
     <h3>{{ translate('others.' + currentSection()?.title.toLowerCase()) }}</h3>
