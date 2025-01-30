@@ -1,30 +1,9 @@
-<nav 
-*ngIf="menuConfig()?.enabled" 
-  class="custom-menu"
-  [class.sticky-menu]="menuConfig()?.sticky"
-  [class.transparent-menu]="menuConfig()?.transparent"
-
->
+<nav *ngIf="menuConfig()?.enabled" class="custom-menu">
   <ul class="menu-items">
-    <li 
-      *ngFor="let item of menuConfig()?.menuItems" 
-      [class.disabled]="!item.enabled"
-    >
-      <a 
-        [routerLink]="item.route" 
-        *ngIf="item.enabled"
-        (click)="onMenuItemClick(item.label)"
-      >
-        {{ item.label }}
-      </a>
+    <li *ngFor="let item of menuConfig()?.menuItems">
+      <a *ngIf="item.enabled" [routerLink]="item.route">
+        {{ translate('menu.' + item.label.toLowerCase()) }}
+      </a>  
     </li>
   </ul>
-  <button 
-    *ngIf="menuConfig()?.sidebar?.enabled" 
-    (click)="toggleSidebar()" 
-    class="toggle-button"
-  >
-    <span *ngIf="sidebarExpanded()">expand_more</span>
-    <span *ngIf="!sidebarExpanded()">chevron_left</span>
-  </button>
 </nav>

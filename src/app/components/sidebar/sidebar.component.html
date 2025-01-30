@@ -1,9 +1,9 @@
 <div class="sidebar-container" [class.active]="sidebarVisible()">
   <div *ngIf="currentSection()" class="sidebar-section">
-    <h3>{{ currentSection()?.title }}</h3>
+    <h3>{{ translate('others.' + currentSection()?.title.toLowerCase()) }}</h3>
     <ul>
-      <li *ngFor="let item of currentSection()?.items" [class.disabled]="!item.enabled">
-        <a [routerLink]="item.route" *ngIf="item.enabled">{{ item.label }}</a>
+      <li *ngFor="let item of currentSection()?.items">
+        <a *ngIf="item.enabled" [routerLink]="item.route">        {{ translate('sidebar.' + item.label.toLowerCase()) }}</a>
       </li>
     </ul>
   </div>

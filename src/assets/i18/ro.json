@@ -20,6 +20,7 @@
         "ourteam": "Echipa noastră",
         "history": "Istorie",
         "toggle": "Afișează/Ascunde Sidebar"
+        
     },
 
     "language-switcher": {
@@ -41,4 +42,5 @@
         "services" : "Servicii",
         "contact": "Contact"
 }
+  
 }

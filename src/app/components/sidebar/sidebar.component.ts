@@ -1,7 +1,8 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, inject, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { LanguageService } from '../language-switcher/language.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  private languageService = inject(LanguageService);
   private _sidebarConfig = signal<any | null>(null); // Configurație din JSON
   private _currentPage = signal<string>(''); // Pagină curentă
   sidebarVisible = signal(false); // Control pentru afișare Sidebar
@@ -18,7 +20,8 @@ export class SidebarComponent {
   // Computed pentru secțiunea curentă
   currentSection = computed(() => {
     const config = this._sidebarConfig();
-    return config?.sections?.find((section: any) => section.title.toLowerCase() === this._currentPage()) || null;
+  const page = this._currentPage();
+  return config?.sections?.find((section: any) => section.title.toLowerCase() === page) || null;
   });
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
@@ -35,7 +38,7 @@ export class SidebarComponent {
 
   trackCurrentPage() {
     this.router.events.subscribe(() => {
-      const routePath = this.route.snapshot.firstChild?.routeConfig?.path || 'home';
+      const routePath = this.router.url.split('/')[1] || 'home'; 
       this._currentPage.set(routePath);
     });
   }
@@ -45,4 +48,11 @@ export class SidebarComponent {
     this.sidebarVisible.set(!this.sidebarVisible());
     console.log('New state:', this.sidebarVisible());
   }
+
+
+  translate(key: string): string {
+    return this.languageService.translate(key) || key; // Fallback la cheie dacă nu există traducere
+  }
+  
+  
 }

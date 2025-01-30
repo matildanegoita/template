@@ -1,0 +1,40 @@
+{
+    "menu": {
+        "home": "Startseite",
+        "about": "Über uns",
+        "services": "Dienstleistungen",
+        "contact": "Kontakt"
+    },
+    "footer": {
+        "text": "© 2025 Alle Rechte vorbehalten."
+    },
+    "sidebar": {
+        "overview": "Übersicht",
+        "updates": "Aktualisierungen",
+        "webdevelopment": "Webentwicklung",
+        "appdevelopment": "App-Entwicklung",
+        "customersupport": "Kundensupport",
+        "feedback": "Feedback",
+        "ourteam": "Unser Team",
+        "history": "Geschichte",
+        "toggle": "Seitenleiste umschalten"
+    },
+    "language-switcher": {
+        "label": "Sprache auswählen",
+        "languages": {
+            "ro": "Rumänisch",
+            "en": "Englisch",
+            "de": "Deutsch",
+            "es": "Spanisch",
+            "it": "Italienisch"
+        }
+    },
+    "others": {
+        "toggle": "Seitenleiste umschalten",
+        "language": "Sprache",
+        "home": "Startseite",
+        "about": "Über uns",
+        "services": "Dienstleistungen",
+        "contact": "Kontakt"
+    }
+}

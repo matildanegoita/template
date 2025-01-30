@@ -10,21 +10,21 @@
     {
       "title": "Services",
       "items": [
-        { "label": "Web Development", "route": "/services/web", "enabled": true },
-        { "label": "App Development", "route": "/services/app", "enabled": true }
+        { "label": "WebDevelopment", "route": "/services/web", "enabled": true },
+        { "label": "AppDevelopment", "route": "/services/app", "enabled": true }
       ]
     },
     {
       "title": "Contact",
       "items": [
-        { "label": "Customer Support", "route": "/contact/support", "enabled": true },
+        { "label": "CustomerSupport", "route": "/contact/support", "enabled": true },
         { "label": "Feedback", "route": "/contact/feedback", "enabled": true }
       ]
     },
     {
       "title": "About",
       "items": [
-        { "label": "Our Team", "route": "/about/team", "enabled": true },
+        { "label": "OurTeam", "route": "/about/team", "enabled": true },
         { "label": "History", "route": "/about/history", "enabled": true }
       ]
     }

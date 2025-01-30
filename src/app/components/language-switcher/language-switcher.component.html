@@ -1,13 +1,7 @@
-<div *ngIf="isEnabled()" class="language-switcher-container">
-  <button class="dropdown-toggle">
-    {{ selectedLanguage().toUpperCase() }} ▼
-  </button>
-  <ul class="dropdown-menu">
-    <li
-      *ngFor="let lang of enabledLanguages()"
-      (click)="changeLanguage(lang.label)"
-    >
-      {{ lang.label.toUpperCase() }}
-    </li>
-  </ul>
+<div class="language-switcher-container">
+  <select (change)="changeLanguage($event)">
+    <option *ngFor="let lang of languages" [value]="lang" [selected]="lang === selectedLanguage">
+      {{ lang.toUpperCase() }}
+    </option>
+  </select>
 </div>

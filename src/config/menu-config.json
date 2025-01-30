@@ -10,7 +10,7 @@
     "transparent": false,
     "enabled": true,
     "sidebar":{
-      "enabled": false
+      "enabled": true
     }
   }
   

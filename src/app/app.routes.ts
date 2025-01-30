@@ -10,5 +10,4 @@ export const routes: Routes = [
     { path: 'services', component: ServicesComponent }, // Ruta pentru pagina "Services"
     { path: 'contact', component: ContactComponent },   // Ruta pentru pagina "Contact"
     { path: 'about', component: AboutComponent },       // Ruta pentru pagina "About"
-    { path: '**', redirectTo: 'home' } 
 ];
