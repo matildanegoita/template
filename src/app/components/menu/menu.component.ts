@@ -16,7 +16,7 @@ export class MenuComponent {
   private languageService = inject(LanguageService);
   private _menuConfig = signal<any | null>(null); // Signal pentru configurația meniului
   sidebarExpanded = signal(false); // Signal pentru starea sidebar-ului
-  selectedLanguage = signal<string>('ro'); // Limba selectată
+  selectedLanguage = signal<string>('en'); // Limba selectată
 
   menuConfig = computed(() => this._menuConfig());
   isSticky = computed(() => this._menuConfig()?.sticky ?? false); // Default false dacă nu există
@@ -35,13 +35,13 @@ export class MenuComponent {
     });
   }
 
-  toggleSidebar() {
-    this.sidebarExpanded.set(!this.sidebarExpanded());
-  }
+  // toggleSidebar() {
+  //   this.sidebarExpanded.set(!this.sidebarExpanded());
+  // }
 
-  onMenuItemClick(menuItem: string) {
-    console.log(`Menu item clicked: ${menuItem}`);
-  }
+  // onMenuItemClick(menuItem: string) {
+  //   console.log(`Menu item clicked: ${menuItem}`);
+  // }
 
   translate(key: string): string {
     return this.languageService.translate(key) || key; // Dacă nu există traducerea, folosește cheia originală
