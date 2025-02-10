@@ -3,34 +3,71 @@
         <div class="alert alert-danger" *ngIf="error">
             <p>{{ error }}</p>
         </div>
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-            <div class = "form-group">
+        <div class="alert alert-success" *ngIf="successMessage">
+            <p>{{ successMessage }}</p>
+        </div>
+
+        <!-- FORMULAR LOGIN / REGISTER -->
+        <form *ngIf="!isResetMode" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
                 <label for="email">E-mail</label>
                 <input 
-                type="email" 
-                id="email" 
-                class="form-control"
-                ngModel
-                name="email"
-                required
-                email
+                    type="email" 
+                    id="email" 
+                    class="form-control"
+                    ngModel
+                    name="email"
+                    required
+                    email
                 />
             </div>
-            <div class = "form-group">
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input 
-                type="password" 
-                id="password" 
-                class="form-control" 
-                ngModel 
-                name="password" 
-                required
-                minlength="6"
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    ngModel 
+                    name="password" 
+                    required
+                    minlength="6"
                 />
             </div>
             <div>
-                <button class="btn btn-primary" type="Submit" [disabled]="!authForm.valid">{{ isLoginMode ? 'Login' : 'Sign Up'}}</button> |
-                <button class="btn btn-primary" (click)="onSwitchModel()" type="button">Switch to {{ isLoginMode ? 'Sign Up' : 'Login'}}</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">
+                    {{ isLoginMode ? 'Login' : 'Sign Up'}}
+                </button> |
+                <button class="btn btn-secondary" (click)="onSwitchMode()" type="button">
+                    Switch to {{ isLoginMode ? 'Sign Up' : 'Login'}}
+                </button>
+                <button class="btn btn-link" (click)="onResetPasswordMode(); $event.preventDefault();">
+                    Forgot Password?
+                </button>
+            </div>
+        </form>
+
+        <!-- FORMULAR RESETARE PAROLĂ -->
+        <form *ngIf="isResetMode" #resetForm="ngForm" (ngSubmit)="onForgotPassword(resetForm)">
+            <h3>Reset Password</h3>
+            <div class="form-group">
+                <label for="reset-email">Enter your email</label>
+                <input 
+                    type="email" 
+                    id="reset-email" 
+                    class="form-control"
+                    ngModel
+                    name="email"
+                    required
+                    email
+                />
+            </div>
+            <div>
+                <button class="btn btn-warning" type="submit" [disabled]="!resetForm.valid">
+                    Send Reset Link
+                </button> |
+                <button class="btn btn-secondary" (click)="isResetMode = false; isLoginMode = true;" type="button">
+                    Back to Login
+                </button>
             </div>
         </form>
     </div>

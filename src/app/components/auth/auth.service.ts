@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError } from "rxjs";
+import { BehaviorSubject, catchError, Observable, Subject, tap } from "rxjs";
 import { throwError } from "rxjs";
+import { User } from "./user.model";
 
 
 export interface AuthResponseData{
@@ -16,6 +17,7 @@ export interface AuthResponseData{
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
+    user = new BehaviorSubject<User | null>(null);
     constructor(private http: HttpClient){
 
     }
@@ -27,7 +29,10 @@ export class AuthService{
                 password: password,
                 returnSecureToken: true
             }
-        ).pipe(catchError(this.handleError));
+        ).pipe(catchError(this.handleError), tap(resData => {
+           this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+           
+        }));
     }
     
     login(email: string, password: string){
@@ -37,7 +42,33 @@ export class AuthService{
                 password: password,
                 returnSecureToken: true
             }
-        ).pipe(catchError(this.handleError));
+        ).pipe(catchError(this.handleError), tap(resData => {
+            this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+            
+         }) );
+    }
+    
+    resetPassword(email: string) {
+        return this.http.post<{ email: string }>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
+            {
+                requestType: "PASSWORD_RESET",
+                email: email
+            }
+        ).pipe(
+            catchError(this.handleError),
+            tap(() => {
+                console.log(`Password reset email sent to ${email}`);
+            })
+        );
+    }
+
+    
+    private handleAuthentication (email: string, userId: string, token: string, expiresIn: number){
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+        const user= new User(email, userId, token, expirationDate);
+        this.user.next(user);
+        localStorage.setItem('userData', JSON.stringify(user));
     }
     
     private handleError(errorRes: HttpErrorResponse){
