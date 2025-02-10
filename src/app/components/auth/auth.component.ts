@@ -1,7 +1,8 @@
 import { CommonModule, NgFor } from "@angular/common";
 import { Component, NgModule } from "@angular/core";
 import { FormsModule, NgForm } from "@angular/forms";
-import { AuthService } from "./auth.service";
+import { AuthResponseData, AuthService } from "./auth.service";
+import { Observable } from "rxjs";
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
@@ -24,21 +25,22 @@ export class AuthComponent{
         }
         const email=form.value.email;
         const password=form.value.password;
+        let authObs: Observable<AuthResponseData>;
 
         if(this.isLoginMode){
-            // ...
+           authObs =  this.authService.login(email, password)
         }else{
-        this.authService.signup(email, password).subscribe(resData => {
-            console.log(resData);
-        }, errorRes => {
-            console.log(errorRes);
-            switch(errorRes.error.message){
-                case 'EMAIL_EXISTS':
-                    this.error='This email exists already';
-            }
-            this.error = 'An error occurred!'
-        });
+        authObs = this.authService.signup(email, password)
     }
+    authObs.subscribe({
+        next: resData => {
+        console.log(resData);
+    }, 
+    error: errorMessage => {
+        console.log(errorMessage);
+        this.error=errorMessage;
+    }
+    });
         form.reset();
      }
 
