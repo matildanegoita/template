@@ -3,7 +3,8 @@
         "home": "Home",
         "about": "About us",
         "services": "Services",
-        "contact": "Contact"
+        "contact": "Contact",
+        "authenticate": "Authentication"
     },
 
     "footer":{
@@ -32,6 +33,18 @@
       "it": "Italian"
     }
     },
+    "auth": {
+    "email": "E-mail",
+    "password": "Password",
+    "login": "Login",
+    "signup": "Sign Up",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "sendResetLink": "Send Reset Link",
+    "backToLogin": "Back to Login",
+    "enterEmail": "Enter your email",
+    "switchTo": "Switch to"
+},
 
     "others":{
         "toggle": "Toggle Sidebar",

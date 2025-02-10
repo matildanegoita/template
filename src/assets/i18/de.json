@@ -3,7 +3,8 @@
         "home": "Startseite",
         "about": "Über uns",
         "services": "Dienstleistungen",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "authenticate": "Authentifizierung"
     },
     "footer": {
         "text": "© 2025 Alle Rechte vorbehalten."
@@ -29,6 +30,18 @@
             "it": "Italienisch"
         }
     },
+    "auth": {
+    "email": "E-Mail",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "forgotPassword": "Passwort vergessen?",
+    "resetPassword": "Passwort zurücksetzen",
+    "sendResetLink": "Zurücksetzungslink senden",
+    "backToLogin": "Zurück zur Anmeldung",
+    "enterEmail": "Geben Sie Ihre E-Mail ein",
+    "switchTo": "Wechseln zu"
+},
     "others": {
         "toggle": "Seitenleiste umschalten",
         "language": "Sprache",

@@ -3,7 +3,8 @@
         "home": "Acasă",
         "about": "Despre Noi",
         "services": "Servicii",
-        "contact": "Contact"
+        "contact": "Contact",
+        "authenticate": "Autentificare"
     },
 
     "footer":{
@@ -32,6 +33,19 @@
       "es": "Spaniolă",
       "it": "Italiană"
     }
+    },
+     
+    "auth":{
+       "email": "E-mail",
+       "password": "Parolă",
+       "login":"Autentificare",
+       "signup": "Înregistrare",
+       "forgotPassword": "Ai uitat parola?",
+       "resetPassword":"Resetează Parola",
+       "sendResetLink": "Trimite Link-ul de Resetare",
+       "backToLogin":"Înapoi la Autentificare",
+       "enterEmail":"Introdu email-ul",
+       "switchTo":"Comută la"
     },
 
     "others":{

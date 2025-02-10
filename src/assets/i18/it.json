@@ -3,7 +3,8 @@
         "home": "Home",
         "about": "Chi siamo",
         "services": "Servizi",
-        "contact": "Contatto"
+        "contact": "Contatto",
+        "authenticate": "Autenticazione"
     },
     "footer": {
         "text": "© 2025 Tutti i diritti riservati."
@@ -29,6 +30,18 @@
             "it": "Italiano"
         }
     },
+    "auth": {
+    "email": "E-mail",
+    "password": "Password",
+    "login": "Accedi",
+    "signup": "Registrati",
+    "forgotPassword": "Password dimenticata?",
+    "resetPassword": "Reimposta Password",
+    "sendResetLink": "Invia Link di Reimpostazione",
+    "backToLogin": "Torna al Login",
+    "enterEmail": "Inserisci la tua email",
+    "switchTo": "Passa a"
+},
     "others": {
         "toggle": "Attiva/disattiva barra laterale",
         "language": "Lingua",

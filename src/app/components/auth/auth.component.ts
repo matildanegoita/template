@@ -1,8 +1,9 @@
 import { CommonModule, NgFor } from "@angular/common";
-import { Component, NgModule } from "@angular/core";
+import { Component, inject, NgModule } from "@angular/core";
 import { FormsModule, NgForm } from "@angular/forms";
 import { AuthResponseData, AuthService } from "./auth.service";
 import { Observable } from "rxjs";
+import { LanguageService } from "../language-switcher/language.service";
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
@@ -15,7 +16,7 @@ export class AuthComponent{
     isResetMode = false;
     error: string | null = null;
     successMessage: string | null = null;
-    
+    languageService= inject (LanguageService);
 
     constructor(private authService: AuthService){}
 
@@ -76,4 +77,7 @@ export class AuthComponent{
         this.error = null;
         this.successMessage = null;
     }
+    translate(key: string): string {
+        return this.languageService.translate(key) || key; // Dacă nu există traducerea, folosește cheia originală
+      } 
 }

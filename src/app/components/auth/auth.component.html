@@ -7,10 +7,9 @@
             <p>{{ successMessage }}</p>
         </div>
 
-        <!-- FORMULAR LOGIN / REGISTER -->
         <form *ngIf="!isResetMode" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
             <div class="form-group">
-                <label for="email">E-mail</label>
+                <label for="email">{{languageService.translate('auth.email')}}</label>
                 <input 
                     type="email" 
                     id="email" 
@@ -22,7 +21,7 @@
                 />
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{ languageService.translate('auth.password')}}</label>
                 <input 
                     type="password" 
                     id="password" 
@@ -35,22 +34,21 @@
             </div>
             <div>
                 <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">
-                    {{ isLoginMode ? 'Login' : 'Sign Up'}}
+                    {{ languageService.translate(isLoginMode ? 'auth.login' : 'auth.signup') }}
                 </button> |
                 <button class="btn btn-secondary" (click)="onSwitchMode()" type="button">
-                    Switch to {{ isLoginMode ? 'Sign Up' : 'Login'}}
+                    {{ languageService.translate('auth.switchTo') }} {{ languageService.translate(isLoginMode ? 'auth.signup' : 'auth.login')}}
                 </button>
                 <button class="btn btn-link" (click)="onResetPasswordMode(); $event.preventDefault();">
-                    Forgot Password?
+                    {{ languageService.translate('auth.forgotPassword') }}
                 </button>
             </div>
         </form>
 
-        <!-- FORMULAR RESETARE PAROLĂ -->
         <form *ngIf="isResetMode" #resetForm="ngForm" (ngSubmit)="onForgotPassword(resetForm)">
-            <h3>Reset Password</h3>
+            <h3>{{ languageService.translate('auth.resetPassword') }}</h3>
             <div class="form-group">
-                <label for="reset-email">Enter your email</label>
+                <label for="reset-email">{{ languageService.translate('auth.enterEmail') }}</label>
                 <input 
                     type="email" 
                     id="reset-email" 
@@ -63,10 +61,10 @@
             </div>
             <div>
                 <button class="btn btn-warning" type="submit" [disabled]="!resetForm.valid">
-                    Send Reset Link
+                    {{ languageService.translate('auth.sendResetLink') }}
                 </button> |
                 <button class="btn btn-secondary" (click)="isResetMode = false; isLoginMode = true;" type="button">
-                    Back to Login
+                    {{ languageService.translate('auth.backToLogin') }}
                 </button>
             </div>
         </form>
