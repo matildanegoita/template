@@ -9,6 +9,7 @@
 
     <div *ngIf="selectedCountry">
         <label for="city-select">{{ languageService.translate('locations.selectCity') }}</label>
+        <app-spinner *ngIf="isLoading"></app-spinner>
         <select id="city-select" class="form-control" [disabled]="cities.length === 0">
             <option value="" selected>-- {{ languageService.translate('locations.selectCity') }} --</option>
             <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
@@ -19,7 +20,7 @@
         {{ languageService.translate('locations.noCities') }}
     </p>
 
-    <p *ngIf="isLoading">{{ languageService.translate('locations.loading') }}</p>
+
 
     <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
 </div>
