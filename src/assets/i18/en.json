@@ -4,6 +4,7 @@
         "about": "About us",
         "services": "Services",
         "contact": "Contact",
+        "locations": "Locations",
         "authenticate": "Authentication"
     },
 
@@ -45,7 +46,12 @@
     "enterEmail": "Enter your email",
     "switchTo": "Switch to"
 },
-
+    "locations": {
+        "selectCountry": "Choose a country",
+        "selectCity": "Choose a city",
+        "noCities": "No cities available for this country.",
+        "loading": "Loading..."
+  },
     "others":{
         "toggle": "Toggle Sidebar",
         "language": "Language",

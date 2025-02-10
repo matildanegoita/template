@@ -4,6 +4,7 @@
         "about": "Über uns",
         "services": "Dienstleistungen",
         "contact": "Kontakt",
+        "locations": "Standorte",
         "authenticate": "Authentifizierung"
     },
     "footer": {
@@ -31,17 +32,23 @@
         }
     },
     "auth": {
-    "email": "E-Mail",
-    "password": "Passwort",
-    "login": "Anmelden",
-    "signup": "Registrieren",
-    "forgotPassword": "Passwort vergessen?",
-    "resetPassword": "Passwort zurücksetzen",
-    "sendResetLink": "Zurücksetzungslink senden",
-    "backToLogin": "Zurück zur Anmeldung",
-    "enterEmail": "Geben Sie Ihre E-Mail ein",
-    "switchTo": "Wechseln zu"
+        "email": "E-Mail",
+        "password": "Passwort",
+         "login": "Anmelden",
+        "signup": "Registrieren",
+        "forgotPassword": "Passwort vergessen?",
+        "resetPassword": "Passwort zurücksetzen",
+        "sendResetLink": "Zurücksetzungslink senden",
+        "backToLogin": "Zurück zur Anmeldung",
+        "enterEmail": "Geben Sie Ihre E-Mail ein",
+        "switchTo": "Wechseln zu"
 },
+    "locations": {
+        "selectCountry": "Wählen Sie ein Land",
+        "selectCity": "Wählen Sie eine Stadt",
+        "noCities": "Keine Städte für dieses Land verfügbar.",
+        "loading": "Lädt..."
+    },
     "others": {
         "toggle": "Seitenleiste umschalten",
         "language": "Sprache",

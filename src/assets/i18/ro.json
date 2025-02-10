@@ -4,6 +4,7 @@
         "about": "Despre Noi",
         "services": "Servicii",
         "contact": "Contact",
+        "locations":"Locații",
         "authenticate": "Autentificare"
     },
 
@@ -47,7 +48,13 @@
        "enterEmail":"Introdu email-ul",
        "switchTo":"Comută la"
     },
-
+      "locations": {
+          "selectCountry": "Alege o țară",
+          "selectCity": "Alege un oraș",
+          "noCities": "Nu există orașe disponibile pentru această țară.",
+          "loading": "Se încarcă..."
+        },
+      
     "others":{
         "toggle": "Afisare Sidebar",
         "language": "Limba",

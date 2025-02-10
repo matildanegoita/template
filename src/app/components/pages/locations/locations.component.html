@@ -1,0 +1,25 @@
+<div class="container">
+    <h3>{{ languageService.translate('locations.selectCountry') }}</h3>
+
+    <label for="country-select">{{ languageService.translate('locations.selectCountry') }}</label>
+    <select id="country-select" class="form-control" (change)="onCountrySelected($event)">
+        <option value="" selected>-- {{ languageService.translate('locations.selectCountry') }} --</option>
+        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+    </select>
+
+    <div *ngIf="selectedCountry">
+        <label for="city-select">{{ languageService.translate('locations.selectCity') }}</label>
+        <select id="city-select" class="form-control" [disabled]="cities.length === 0">
+            <option value="" selected>-- {{ languageService.translate('locations.selectCity') }} --</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+    </div>
+
+    <p *ngIf="selectedCountry && cities.length === 0 && !isLoading">
+        {{ languageService.translate('locations.noCities') }}
+    </p>
+
+    <p *ngIf="isLoading">{{ languageService.translate('locations.loading') }}</p>
+
+    <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+</div>

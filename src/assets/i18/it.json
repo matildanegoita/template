@@ -4,6 +4,7 @@
         "about": "Chi siamo",
         "services": "Servizi",
         "contact": "Contatto",
+        "locations": "Posizioni",
         "authenticate": "Autenticazione"
     },
     "footer": {
@@ -31,17 +32,23 @@
         }
     },
     "auth": {
-    "email": "E-mail",
-    "password": "Password",
-    "login": "Accedi",
-    "signup": "Registrati",
-    "forgotPassword": "Password dimenticata?",
-    "resetPassword": "Reimposta Password",
-    "sendResetLink": "Invia Link di Reimpostazione",
-    "backToLogin": "Torna al Login",
-    "enterEmail": "Inserisci la tua email",
-    "switchTo": "Passa a"
+        "email": "E-mail",
+        "password": "Password",
+        "login": "Accedi",
+        "signup": "Registrati",
+        "forgotPassword": "Password dimenticata?",
+        "resetPassword": "Reimposta Password",
+        "sendResetLink": "Invia Link di Reimpostazione",
+        "backToLogin": "Torna al Login",
+        "enterEmail": "Inserisci la tua email",
+        "switchTo": "Passa a"
 },
+    "locations": {
+        "selectCountry": "Seleziona un paese",
+        "selectCity": "Seleziona una città",
+        "noCities": "Nessuna città disponibile per questo paese.",
+        "loading": "Caricamento in corso..."
+  },
     "others": {
         "toggle": "Attiva/disattiva barra laterale",
         "language": "Lingua",
