@@ -44,7 +44,9 @@
     "sendResetLink": "Send Reset Link",
     "backToLogin": "Back to Login",
     "enterEmail": "Enter your email",
-    "switchTo": "Switch to"
+    "switchTo": "Switch to",
+    "verifyEmail": "Verification email sent! Check your inbox.",
+    "verifyEmailLogin": "You must verify your email before logging in. Check your inbox."
 },
     "locations": {
         "selectCountry": "Choose a country",

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, Observable, Subject, tap } from "rxjs";
 import { throwError } from "rxjs";
 import { User } from "./user.model";
+import { map } from "rxjs";
 
 
 export interface AuthResponseData{
@@ -30,10 +31,22 @@ export class AuthService{
                 returnSecureToken: true
             }
         ).pipe(catchError(this.handleError), tap(resData => {
-           this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+            this.sendEmailVerification(resData.idToken).subscribe();
            
         }));
     }
+    sendEmailVerification(idToken: string): Observable<any> {
+        return this.http.post(
+            `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w`,
+            { requestType: "VERIFY_EMAIL", idToken }
+        ).pipe(
+            catchError(this.handleError),
+            tap(() => {
+                console.log("Verification email sent!");
+            })
+        );
+    }
+    
     
     login(email: string, password: string){
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
@@ -43,11 +56,24 @@ export class AuthService{
                 returnSecureToken: true
             }
         ).pipe(catchError(this.handleError), tap(resData => {
-            this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
-            
+            this.checkEmailVerification(resData.idToken).subscribe(isVerified => {
+                if (isVerified) {
+                    this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+                } else {
+                    throwError(() => new Error("Email not verified. Check your inbox."));
+                }
+            });
          }) );
     }
-    
+    checkEmailVerification(idToken: string): Observable<boolean> {
+        return this.http.post<any>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
+            { idToken }
+        ).pipe(
+            map(response => response.users[0]?.emailVerified || false),
+            catchError(this.handleError)
+        );
+    }
     resetPassword(email: string) {
         return this.http.post<{ email: string }>(
             'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',

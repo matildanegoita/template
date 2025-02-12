@@ -46,7 +46,9 @@
        "sendResetLink": "Trimite Link-ul de Resetare",
        "backToLogin":"Înapoi la Autentificare",
        "enterEmail":"Introdu email-ul",
-       "switchTo":"Comută la"
+       "switchTo":"Comută la",
+       "verifyEmail": "Emailul de verificare a fost trimis! Verifică-ți căsuța de email.",
+        "verifyEmailLogin": "Trebuie să îți verifici emailul înainte de a te autentifica. Verifică-ți căsuța de email."
     },
       "locations": {
           "selectCountry": "Alege o țară",

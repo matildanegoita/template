@@ -43,17 +43,22 @@ export class AuthComponent{
         authObs = this.authService.signup(email, password)
     }
     authObs.subscribe({
-        next: resData => {
-        console.log(resData);
-    }, 
-    error: errorMessage => {
-        console.log(errorMessage);
-        this.error=errorMessage;
-    }
-    });
+        next: (resData) => {
+            if (!this.isLoginMode) {
+                this.successMessage = this.languageService.translate('auth.verifyEmail');
+            }
+            }, 
+        error: (errorMessage) => {
+            if (errorMessage === "Email not verified. Check your inbox.") {
+                this.successMessage = this.languageService.translate('auth.verifyEmailLogin');
+            } else {
+                this.error = errorMessage;
+            }
+        },
+        });
         form.reset();
      }
-
+    
      onForgotPassword(form: NgForm) {
         if (!form.valid) {
             this.error = "Please enter your email!"
@@ -72,6 +77,23 @@ export class AuthComponent{
             }
         });
         form.reset();
+    }
+    onSendVerificationEmail() {
+        this.clearMessages();
+        const user = this.authService.user.value;
+        if (!user) {
+            this.error = "You must be logged in to verify your email.";
+            return;
+        }
+
+        this.authService.sendEmailVerification(user.token!).subscribe({
+            next: () => {
+                this.successMessage = "Verification email sent! Check your inbox.";
+            },
+            error: (errorMessage) => {
+                this.error = errorMessage;
+            },
+        });
     }
     clearMessages() {
         this.error = null;

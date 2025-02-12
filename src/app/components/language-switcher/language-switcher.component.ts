@@ -25,8 +25,8 @@ export class LanguageSwitcherComponent {
   loadLanguages() {
     this.http.get('/config/language-switcher-config.json').subscribe({
       next: (data: any) => {
-        console.log("Loaded languages:", data.languageSwitcher.languages); // DEBUG
-        this._languages.set(data.languageSwitcher.languages.filter((lang: any) => lang.enabled)); // FILTRARE!
+        console.log("Loaded languages:", data.languageSwitcher.languages); 
+        this._languages.set(data.languageSwitcher.languages.filter((lang: any) => lang.enabled)); 
         this._enabled.set(data.languageSwitcher.enabled); // Setăm dacă apare sau nu
       },
       error: (err) => console.error('Failed to load languages:', err)
