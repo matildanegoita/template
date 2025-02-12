@@ -6,14 +6,14 @@ import { ServicesComponent } from './components/pages/services/services.componen
 import { AuthComponent } from './components/auth/auth.component';
 import { LocationsComponent } from './components/pages/locations/locations.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-
+import { AuthGuard } from './components/auth/auth.guard';
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect la pagina "Home"
-    { path: 'home', component: HomeComponent },         // Ruta pentru pagina "Home"
-    { path: 'services', component: ServicesComponent }, // Ruta pentru pagina "Services"
+    { path: '', redirectTo: 'home', pathMatch: 'full'}, // Redirect la pagina "Home"
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },         // Ruta pentru pagina "Home"
+    { path: 'services', component: ServicesComponent, canActivate: [AuthGuard] }, // Ruta pentru pagina "Services"
     { path: 'contact', component: ContactComponent },   // Ruta pentru pagina "Contact"
     { path: 'about', component: AboutComponent },      // Ruta pentru pagina "About"
-    { path: 'locations', component: LocationsComponent},
+    { path: 'locations', component: LocationsComponent, canActivate: [AuthGuard]},
     { path: 'auth', component: AuthComponent},
     { path: '**', component: NotFoundComponent}
 ];
