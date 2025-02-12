@@ -5,6 +5,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { ServicesComponent } from './components/pages/services/services.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { LocationsComponent } from './components/pages/locations/locations.component';
+import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect la pagina "Home"
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },   // Ruta pentru pagina "Contact"
     { path: 'about', component: AboutComponent },      // Ruta pentru pagina "About"
     { path: 'locations', component: LocationsComponent},
-    { path: 'auth', component: AuthComponent}
+    { path: 'auth', component: AuthComponent},
+    { path: '**', component: NotFoundComponent}
 ];

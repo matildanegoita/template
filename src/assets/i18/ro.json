@@ -56,7 +56,12 @@
           "noCities": "Nu există orașe disponibile pentru această țară.",
           "loading": "Se încarcă..."
         },
-      
+      "notFound": {
+  "title": "Pagina nu a fost găsită!",
+  "message": "Ne pare rău, dar pagina pe care o cauți nu există.",
+  "backToHome": "Înapoi la Acasă"
+},
+
     "others":{
         "toggle": "Afisare Sidebar",
         "language": "Limba",
