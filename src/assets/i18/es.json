@@ -5,7 +5,7 @@
         "services": "Servicios",
         "contact": "Contacto",
         "locations": "Ubicaciones",
-        "authenticate": "Autenticación"
+        "authentication": "Autenticación"
     },
     "footer": {
         "text": "© 2025 Todos los derechos reservados."

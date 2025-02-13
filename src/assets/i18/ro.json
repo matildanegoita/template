@@ -5,7 +5,7 @@
         "services": "Servicii",
         "contact": "Contact",
         "locations":"Locații",
-        "authenticate": "Autentificare"
+        "authentication": "Autentificare"
     },
 
     "footer":{
@@ -48,7 +48,13 @@
        "enterEmail":"Introdu email-ul",
        "switchTo":"Comută la",
        "verifyEmail": "Emailul de verificare a fost trimis! Verifică-ți căsuța de email.",
-        "verifyEmailLogin": "Trebuie să îți verifici emailul înainte de a te autentifica. Verifică-ți căsuța de email."
+        "emailExists": "Acest email este deja folosit.",
+    "invalidPassword": "Parolă incorectă.",
+    "emailNotFound": "Acest email nu există.",
+    "userDisabled": "Acest cont a fost dezactivat de administrator.",
+    "tooManyAttempts": "Prea multe încercări. Încearcă mai târziu.",
+    "verifyEmailLogin": "Verifică-ți emailul înainte de a te autentifica.",
+    "unknownError": "A apărut o eroare necunoscută. Încearcă din nou."
     },
       "locations": {
           "selectCountry": "Alege o țară",

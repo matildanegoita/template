@@ -4,9 +4,12 @@
      class="custom-menu">
   <ul class="menu-items">
     <li *ngFor="let item of menuConfig()?.menuItems">
-      <a *ngIf="item.enabled" [routerLink]="item.route">
+      <a *ngIf="item.enabled && (!item.protected || isAuthenticated())" [routerLink]="item.route">
         {{ translate('menu.' + item.label.toLowerCase()) }}
-      </a>  
+      </a>   
     </li>
+    <li *ngIf="isAuthenticated">
+      <button (click)="onLogout()" class="btnLogout">Logout</button>
+  </li>
   </ul>
 </nav>

@@ -5,7 +5,7 @@
         "services": "Services",
         "contact": "Contact",
         "locations": "Locations",
-        "authenticate": "Authentication"
+        "authentication": "Authentication"
     },
 
     "footer":{

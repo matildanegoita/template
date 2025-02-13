@@ -1,11 +1,11 @@
 {
     "menuItems": [
-      { "label": "Home", "route": "/home", "enabled": true},
-      { "label": "About", "route": "/about", "enabled": true},
-      { "label": "Services", "route": "/services", "enabled": true},
-      { "label": "Contact", "route": "/contact", "enabled": true},
-      { "label": "Locations", "route":"/locations", "enabled": true},
-      { "label": "Authenticate", "route":"/auth", "enabled": true}
+      { "label": "Home", "route": "/home", "enabled": true, "protected": true},
+      { "label": "About", "route": "/about", "enabled": true, "protected": false},
+      { "label": "Services", "route": "/services", "enabled": true, "protected": true},
+      { "label": "Contact", "route": "/contact", "enabled": true, "protected": false},
+      { "label": "Locations", "route":"/locations", "enabled": true, "protected": true},
+      { "label": "Authentication", "route":"/auth", "enabled": true, "protected": false}
     ],
     "sticky": true,
     "transparent": false,

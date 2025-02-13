@@ -4,6 +4,8 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { AuthResponseData, AuthService } from "./auth.service";
 import { Observable } from "rxjs";
 import { LanguageService } from "../language-switcher/language.service";
+import { Router } from "@angular/router";
+
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
@@ -13,16 +15,16 @@ import { LanguageService } from "../language-switcher/language.service";
 
 export class AuthComponent{
     isLoginMode = true;
+    isLoading=false;
     isResetMode = false;
     error: string | null = null;
     successMessage: string | null = null;
     languageService= inject (LanguageService);
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService, private router: Router){}
 
     onSwitchMode(){
         this.isLoginMode = !this.isLoginMode;
-        this.isResetMode=false;
     }
     onResetPasswordMode() {
         this.isResetMode = true; 
@@ -35,27 +37,37 @@ export class AuthComponent{
         }
         const email=form.value.email;
         const password=form.value.password;
-        let authObs: Observable<AuthResponseData>;
 
         if(this.isLoginMode){
-           authObs =  this.authService.login(email, password)
-        }else{
-        authObs = this.authService.signup(email, password)
-    }
-    authObs.subscribe({
-        next: (resData) => {
-            if (!this.isLoginMode) {
-                this.successMessage = this.languageService.translate('auth.verifyEmail');
-            }
-            }, 
-        error: (errorMessage) => {
-            if (errorMessage === "Email not verified. Check your inbox.") {
-                this.successMessage = this.languageService.translate('auth.verifyEmailLogin');
-            } else {
+            this.isLoading = true;
+           this.authService.login(email, password).subscribe({
+            next: (resData) => {
+                console.log('Logged in:', resData);
+                this.isLoading = false;
+                this.router.navigate(['/home']);
+            },
+            error: (errorMessage) => {
+                console.log(errorMessage);
                 this.error = errorMessage;
+                this.isLoading = false;
             }
-        },
-        });
+           });
+        }else{
+            this.isLoading = true;
+            this.authService.signup(email, password).subscribe({
+                next: (resData) => {
+                    console.log(resData);
+                    this.isLoading = false;
+                    this.isLoginMode = !this.isLoginMode;
+                    this.successMessage = "Verification email sent! Please check your inbox.";
+                },
+                error: (errorMessage) => {
+                    console.log(errorMessage);
+                    this.error = errorMessage;
+                    this.isLoading = false;
+                }
+            });
+    }
         form.reset();
      }
     
