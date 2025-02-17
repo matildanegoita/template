@@ -12,7 +12,7 @@ export class LanguageService {
   currentLanguage$ = this.currentLanguage.asObservable();
 
   constructor() {
-    this.loadLanguage('en'); // Limba implicită
+    this.loadLanguage(this.currentLanguage.value); // Limba implicită
   }
 
   loadLanguage(lang: string) {
@@ -26,7 +26,7 @@ export class LanguageService {
   }
 
   translate(key: string): string {
-    const keys = key.split('.'); // Ex: "menu.Home" => ["menu", "Home"]
+    const keys = key.split('.'); 
     let result: any = this.translations;
     
     for (const k of keys) {
@@ -36,5 +36,13 @@ export class LanguageService {
   
     return result;
   }
-  
+  setLanguage(lang: string) {
+    localStorage.setItem('language', lang);
+    this.currentLanguage.next(lang);
+    this.loadLanguage(lang);
+    console.log(`Language set to: ${lang}`);
+  }
+  getLanguage(): string {
+    return this.currentLanguage.value;
+  }
 }

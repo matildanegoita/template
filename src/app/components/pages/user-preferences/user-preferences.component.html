@@ -1,0 +1,19 @@
+<form class="preferences-form" #form="ngForm" (ngSubmit)="savePreferences(form)">
+  <h3>{{ languageService.translate('userPreferences.title') }}</h3>
+
+
+  <label for="language">{{ languageService.translate('userPreferences.language') }}</label>
+  <select id="language" [(ngModel)]="selectedLanguage" name="language" required>
+    <option *ngFor="let lang of languages" [value]="lang">{{ lang.toUpperCase() }}</option>
+  </select>
+
+
+  <label for="theme">{{ languageService.translate('userPreferences.theme') }}</label>
+  <select id="theme" [(ngModel)]="selectedTheme" name="theme" required>
+    <option *ngFor="let theme of themes" [value]="theme">{{ theme }}</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary">
+    {{ languageService.translate('userPreferences.save') }}
+  </button>
+</form>

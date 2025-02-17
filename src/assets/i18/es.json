@@ -5,7 +5,8 @@
         "services": "Servicios",
         "contact": "Contacto",
         "locations": "Ubicaciones",
-        "authentication": "Autenticación"
+        "authentication": "Autenticación",
+        "preferences":"Preferencias"
     },
     "footer": {
         "text": "© 2025 Todos los derechos reservados."
@@ -48,6 +49,14 @@
         "selectCity": "Elige una ciudad",
         "noCities": "No hay ciudades disponibles para este país.",
         "loading": "Cargando..."
+  },
+  "userPreferences": {
+    "title": "Preferencias del Usuario",
+    "language": "Idioma",
+    "theme": "Tema",
+    "save": "Guardar",
+    "success": "¡Preferencias guardadas con éxito!",
+    "error": "Se produjo un error. Por favor, inténtelo de nuevo."
   },
     "others": {
         "toggle": "Alternar barra lateral",

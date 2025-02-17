@@ -24,3 +24,31 @@ html, body {
   .toggle-sidebar:hover {
     background-color: #555;
   }  
+
+/* Apply to all elements */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h3{
+  color: var(--primary-color);
+}
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-theme a {
+  color: #bb86fc;
+}
+
+.dark-theme button {
+  background-color: #333;
+  color: #fff;
+}

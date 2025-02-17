@@ -5,7 +5,8 @@
         "services": "Services",
         "contact": "Contact",
         "locations": "Locations",
-        "authentication": "Authentication"
+        "authentication": "Authentication",
+        "preferences": "Preferences"
     },
 
     "footer":{
@@ -58,8 +59,15 @@
   "title": "Page not found!",
   "message": "Sorry, but the page you are looking for does not exist.",
   "backToHome": "Back to Home"
-}
-,
+},
+"userPreferences": {
+    "title": "User Preferences",
+    "language": "Language",
+    "theme": "Theme",
+    "save": "Save",
+    "success": "Preferences saved successfully!",
+    "error": "An error occurred. Please try again."
+  },
     "others":{
         "toggle": "Toggle Sidebar",
         "language": "Language",

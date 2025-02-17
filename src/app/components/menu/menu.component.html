@@ -8,7 +8,7 @@
         {{ translate('menu.' + item.label.toLowerCase()) }}
       </a>   
     </li>
-    <li *ngIf="isAuthenticated">
+    <li *ngIf="isAuthenticated()">
       <button (click)="onLogout()" class="btnLogout">Logout</button>
   </li>
   </ul>

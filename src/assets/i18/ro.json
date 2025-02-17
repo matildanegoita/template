@@ -5,7 +5,8 @@
         "services": "Servicii",
         "contact": "Contact",
         "locations":"Locații",
-        "authentication": "Autentificare"
+        "authentication": "Autentificare",
+        "preferences": "Preferințe"
     },
 
     "footer":{
@@ -67,7 +68,14 @@
   "message": "Ne pare rău, dar pagina pe care o cauți nu există.",
   "backToHome": "Înapoi la Acasă"
 },
-
+"userPreferences": {
+    "title": "Preferințe Utilizator",
+    "language": "Limba",
+    "theme": "Temă",
+    "save": "Salvează",
+    "success": "Preferințele au fost salvate cu succes!",
+    "error": "A apărut o eroare. Vă rugăm să încercați din nou."
+  },
     "others":{
         "toggle": "Afisare Sidebar",
         "language": "Limba",

@@ -5,7 +5,8 @@
         "services": "Dienstleistungen",
         "contact": "Kontakt",
         "locations": "Standorte",
-        "authentication": "Authentifizierung"
+        "authentication": "Authentifizierung",
+        "preferences": "Einstellungen"
     },
     "footer": {
         "text": "© 2025 Alle Rechte vorbehalten."
@@ -49,6 +50,14 @@
         "noCities": "Keine Städte für dieses Land verfügbar.",
         "loading": "Lädt..."
     },
+    "userPreferences": {
+    "title": "Benutzereinstellungen",
+    "language": "Sprache",
+    "theme": "Thema",
+    "save": "Speichern",
+    "success": "Einstellungen erfolgreich gespeichert!",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+  },
     "others": {
         "toggle": "Seitenleiste umschalten",
         "language": "Sprache",

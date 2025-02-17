@@ -17,15 +17,19 @@ export class AuthComponent{
     isLoginMode = true;
     isLoading=false;
     isResetMode = false;
+    theme: string = 'light';
     error: string | null = null;
     successMessage: string | null = null;
     languageService= inject (LanguageService);
+    
 
     constructor(private authService: AuthService, private router: Router){}
 
     onSwitchMode(){
         this.isLoginMode = !this.isLoginMode;
+        this.isResetMode=false;
     }
+ 
     onResetPasswordMode() {
         this.isResetMode = true; 
         this.isLoginMode = false;
@@ -37,7 +41,8 @@ export class AuthComponent{
         }
         const email=form.value.email;
         const password=form.value.password;
-
+        const language = navigator.language.slice(0, 2);
+        const theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         if(this.isLoginMode){
             this.isLoading = true;
            this.authService.login(email, password).subscribe({
@@ -54,7 +59,7 @@ export class AuthComponent{
            });
         }else{
             this.isLoading = true;
-            this.authService.signup(email, password).subscribe({
+            this.authService.signup(email, password, language).subscribe({
                 next: (resData) => {
                     console.log(resData);
                     this.isLoading = false;

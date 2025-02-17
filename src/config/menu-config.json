@@ -5,7 +5,8 @@
       { "label": "Services", "route": "/services", "enabled": true, "protected": true},
       { "label": "Contact", "route": "/contact", "enabled": true, "protected": false},
       { "label": "Locations", "route":"/locations", "enabled": true, "protected": true},
-      { "label": "Authentication", "route":"/auth", "enabled": true, "protected": false}
+      { "label": "Authentication", "route":"/auth", "enabled": true, "protected": false},
+      { "label" : "Preferences", "route":"/user-preferences", "enabled": true, "protected": true}
     ],
     "sticky": true,
     "transparent": false,

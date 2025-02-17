@@ -1,11 +1,12 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, Observable, Subject, switchMap, tap } from "rxjs";
+import { BehaviorSubject, catchError, from, Observable, Subject, switchMap, take, tap } from "rxjs";
 import { throwError } from "rxjs";
 import { User } from "./user.model";
 import { map } from "rxjs";
 import { Router } from "@angular/router";
 import { LanguageService } from "../language-switcher/language.service";
+import { DatabaseService } from "../../database/database.service";
 
 
 export interface AuthResponseData{
@@ -15,7 +16,6 @@ export interface AuthResponseData{
     refreshToken: string;
     expiresIn: string;
     localId: string;
-    registered ?: boolean;
 }
 
 @Injectable({providedIn: 'root'})
@@ -24,12 +24,15 @@ export class AuthService{
     user = new BehaviorSubject<User | null>(null);
     private tokenExpirationTimer: any;
     private languageService = inject(LanguageService);
-
+    private databaseService= inject(DatabaseService);
     constructor(private http: HttpClient, private router: Router){
         this.autoLogin();
     }
     
-    signup(email: string, password: string){
+    signup(email: string, password: string, language: string): Observable<AuthResponseData>{
+        const hashedPassword = btoa(password);
+        const theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const detectedLanguage = navigator.language.slice(0, 2);
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
             {
                 email: email,
@@ -38,9 +41,19 @@ export class AuthService{
             }
         ).pipe(
             switchMap((resData) => {
-                return this.sendEmailVerification(resData.idToken);
+                return this.sendEmailVerification(resData.idToken).pipe(
+                    switchMap(() => {
+                        // Salvăm profilul utilizatorului cu limba detectată
+                        return this.databaseService.saveUserProfile(resData.localId, email, hashedPassword, detectedLanguage, theme);
+                    }),
+                    tap(() => {
+                        this.languageService.setLanguage(detectedLanguage); // 🔹 Setăm limba în Language Picker
+                    }),
+                    map(() => resData)
+                );
             }),
-            catchError(this.handleError), tap(resData => { this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn); })
+            catchError(this.handleError),
+            tap(resData => { this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn); })
         );
 }
     sendEmailVerification(idToken: string): Observable<any> {
@@ -56,32 +69,40 @@ export class AuthService{
     }
     
     
-    login(email: string, password: string){
+    login(email: string, password: string): Observable<AuthResponseData>{
         return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
             {
                 email: email,
                 password: password,
                 returnSecureToken: true
             }
-        ).pipe(switchMap((resData) => {
-            return this.checkEmailVerification(resData.idToken).pipe(
-                switchMap((isVerified) => {
-                    if (!isVerified) {
-                        return throwError(() => ({
-                            error: {
-                                error: { message: 'EMAIL_NOT_VERIFIED' }
-                            }
-                        }));
-                    }
-                    return [resData]; 
-                })
-            );
-        }),
-        catchError(this.handleError),
-        tap(resData => { this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn); })
-    );
-}
-
+        ).pipe(
+            switchMap((resData) => {
+                return this.checkEmailVerification(resData.idToken).pipe(
+                    switchMap((isVerified) => {
+                        if (!isVerified) {
+                            return throwError(() => ({
+                                error: {
+                                    error: { message: 'EMAIL_NOT_VERIFIED' }
+                                }
+                            }));
+                        }
+                        
+                        return from(this.databaseService.getUserProfile(resData.localId)).pipe(
+                            tap(userProfile => {
+                                if (userProfile && userProfile.language) {
+                                    this.languageService.setLanguage(userProfile.language);
+                                }
+                            }),
+                            map(() => resData)
+                        );
+                    })
+                );
+            }),
+            catchError(this.handleError),
+            tap(resData => { this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn); })
+        );
+    }
     autoLogin(){
        const userData:{
         email: string;
@@ -139,7 +160,34 @@ export class AuthService{
             })
         );
     }
-
+    updateUserPassword(newPassword: string): Observable<any> {
+        return this.user.pipe(
+            take(1),
+            switchMap(user => {
+                if (!user || !user.token) {
+                    return throwError(() => new Error('No authenticated user!'));
+                }
+    
+                return this.http.post<any>(
+                    'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBdGegGOjeag6upB1c2k1kaaguEah8-l5w',
+                    {
+                        idToken: user.token,
+                        password: newPassword,
+                        returnSecureToken: true
+                    }
+                ).pipe(
+                    switchMap(resData => {
+                        // 🔹 Convertim Promise în Observable cu `from()`
+                        return from(this.databaseService.updateUserPassword(user.id, newPassword)).pipe(
+                            map(() => resData) // Returnăm răspunsul inițial după actualizare
+                        );
+                    }),
+                    tap(() => console.log('Password successfully updated in Firebase Authentication and Firestore.')),
+                    catchError(this.handleError)
+                );
+            })
+        );
+    }
     
     private handleAuthentication (email: string, userId: string, token: string, expiresIn: number){
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
@@ -180,10 +228,10 @@ export class AuthService{
                 break;
 
                 default:
-                    errorMessage = `Firebase Error: ${errorKey}`; // Mesaj fallback
+                    errorMessage = `Firebase Error: ${errorKey}`; 
             }
         
-            console.log(`🔥 Firebase Error: ${errorKey}`); // Debugging
+            console.log(` Firebase Error: ${errorKey}`); 
         
             return throwError(() => new Error(errorMessage));
     }
