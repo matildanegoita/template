@@ -62,9 +62,10 @@ export class UserPreferencesComponent implements OnInit {
     }
   }
   onLanguageChange() {
-    this.languageService.setLanguage(this.selectedLanguage);
-    console.log('Language changed to:', this.selectedLanguage);
+    this.languageService.setLanguage(this.selectedLanguage); // ✅ Actualizează limba global
+    console.log('Language changed globally:', this.selectedLanguage);
   }
+  
   onThemeChange() {
     this.preferencesService.setTheme(this.selectedTheme);
     console.log('Theme changed to:', this.selectedTheme);
@@ -105,6 +106,7 @@ export class UserPreferencesComponent implements OnInit {
     this.languageService.setLanguage(this.selectedLanguage);
     this.preferencesService.setTheme(this.selectedTheme);
   }
+  
   
   
 }

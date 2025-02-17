@@ -15,6 +15,7 @@ export class LanguageService {
     this.loadLanguage(this.currentLanguage.value); // Limba implicită
   }
 
+  
   loadLanguage(lang: string) {
     this.http.get(`/assets/i18/${lang}.json`).subscribe({
       next: (data: any) => {
@@ -45,4 +46,5 @@ export class LanguageService {
   getLanguage(): string {
     return this.currentLanguage.value;
   }
+  
 }

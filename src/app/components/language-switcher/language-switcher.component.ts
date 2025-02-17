@@ -21,7 +21,18 @@ export class LanguageSwitcherComponent {
   constructor() {
     this.loadLanguages();
   }
-
+  ngOnInit() {
+    this.languageService.currentLanguage$.subscribe(lang => {
+      this.selectedLanguage.set(lang); // ✅ Folosește .set() pentru signal
+    });
+  }
+  
+  
+  onLanguageChange() {
+    this.languageService.setLanguage(this.selectedLanguage()); // ✅ Citește valoarea signal
+    console.log('Language changed globally from Header:', this.selectedLanguage());
+  }
+  
   loadLanguages() {
     this.http.get('/config/language-switcher-config.json').subscribe({
       next: (data: any) => {

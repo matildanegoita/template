@@ -55,7 +55,7 @@ select:hover {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(50, 48, 48, 0.3);
 }
 
 /* ========================= */
